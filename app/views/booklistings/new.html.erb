@@ -13,10 +13,11 @@
     </div>
   <% end %>
 
-  <%# <%= f.label :picture %> <%= f.file_field :picture, accept:'image/png,image/gif,image/jpeg,image/jpg' %> %>
+  <%= f.label :picture %>
+  <%= f.file_field :picture, accept:'image/png,image/gif,image/jpeg,image/jpg' %> 
   <%= f.input :title %>
   <%= f.input :author %>
-  <%# <%= select_tag(:condition_id, options_for_select(@conditions), :prompt => "Select Condition") %> %>
+  <%= select_tag(:condition_id, options_for_select(@conditions), :prompt => "Select Condition") %>
   <%= f.input :price %>
   <%= f.input :description%>
   <%= f.button :submit %>
