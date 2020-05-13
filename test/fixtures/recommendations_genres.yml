@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  recommendation: one
+  genre: one
+
+two:
+  recommendation: two
+  genre: two

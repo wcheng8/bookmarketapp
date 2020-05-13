@@ -1,10 +1,15 @@
 <p id="notice"><%= notice %></p>
 
+<%=image_tag @booklisting.picture, width: '200' if @booklisting.picture.attached? %>
+
 <p>
   <strong>Title:</strong>
   <%= @booklisting.title %>
 </p>
-<%= @booklisting.condition.status %>
+<p>
+  <strong>Condition:</strong>
+  <%= @booklisting.condition.status %>
+</p>
 <p>
   <strong>Author:</strong>
   <%= @booklisting.author %>

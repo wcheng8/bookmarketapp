@@ -8,6 +8,7 @@
       <th>Title</th>
       <th>Author</th>
       <th>Description</th>
+      <th>Status</th>
       <th>Price</th>
       <th colspan="3"></th>
     </tr>
@@ -16,7 +17,7 @@
   <tbody>
     <% @booklistings.each do |booklisting| %>
       <tr>
-        <td><%= booklisting.title %></td>
+        <td><%= link_to booklisting.title, booklisting_path(booklisting) %></td>
         <td><%= booklisting.author %></td>
         <td><%= booklisting.description %></td>
         <td><%= booklisting.condition.status %></td>

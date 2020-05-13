@@ -19,6 +19,7 @@ class BooklistingsController < ApplicationController
 
   def create
     @booklisting = current_user.booklistings.build(booklisting_params)
+    @booklisting.genre = params[:genre_id]
     @booklisting.condition_id = params[:condition_id]
 
     if @booklisting.save

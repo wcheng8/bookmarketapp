@@ -1,24 +1,22 @@
-<p id="notice"><%= notice %></p>
+<%=image_tag @booklisting.picture, width: '200' if @booklisting.picture.attached? %>
 
 <p>
   <strong>Title:</strong>
-  <%= @recommendation.title %>
+  <%= @booklisting.title %>
 </p>
-
 <p>
-  <strong>Book:</strong>
-  <%= @recommendation.book %>
+  <strong>Genre:</strong>
+  <%= @booklisting.genre.genre %>
 </p>
-
 <p>
   <strong>Author:</strong>
-  <%= @recommendation.author %>
+  <%= @booklisting.author %>
 </p>
 
 <p>
-  <strong>Context:</strong>
-  <%= @recommendation.context %>
+  <strong>Description:</strong>
+  <%= @booklisting.context %>
 </p>
 
-<%= link_to 'Edit', edit_recommendation_path(@recommendation) %> |
-<%= link_to 'Back', recommendations_path %>
+<%= link_to 'Edit', edit_booklisting_path(@booklisting) %> |
+<%= link_to 'Back', booklistings_path %>
