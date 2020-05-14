@@ -1,0 +1,7 @@
+<div>
+  Title: <%=booklistcomment.title%><br>
+  Content: <%=booklistcomment.content%><br>
+  Time: <%=time_ago_in_words(booklistcomment.created_at)%><br>  
+
+  <%= link_to 'Delete', [booklistcomment.booklisting, booklistcomment], method: :delete, data: {confirm: 'Are you sure?'} %>
+</div>

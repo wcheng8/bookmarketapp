@@ -25,5 +25,12 @@
   <%= @booklisting.price %>
 </p>
 
+<h3><%= @booklisting.booklistcomments.count %> Commments</h3>
+
+
+<%= render @booklisting.booklistcomments %>
+<h3>Add a Comment</h3>
+<%= render 'booklistcomments/form' %>
+
 <%= link_to 'Edit', edit_booklisting_path(@booklisting) %> |
 <%= link_to 'Back', booklistings_path %>
