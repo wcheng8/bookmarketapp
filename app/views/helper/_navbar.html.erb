@@ -21,6 +21,11 @@
             <ul class="dropdown-item">
               <%= link_to 'Recent Listing', booklistings_path %>
             </ul>
+            <ul class="dropdown-item">
+                <%Condition.all.each do |condition|%>
+                   <li class = "<%='active' if params[:condition]==condition.status%>"><%= link_to condition.status, booklistings_path(condition: condition.status) %></li>
+                <% end %>
+            </ul>
           </div>
         </li>
         <li class="nav-item dropdown">

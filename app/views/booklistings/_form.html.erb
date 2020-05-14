@@ -12,10 +12,7 @@
   <% end %>
 
 <div>
-<div>
-  <%= f.label :genre %> 
-  <%= f.collection_check_boxes(:genre_ids, Genre.all, :id, :genre)%>
-</div>
+
 </div>
   <%= f.label :picture %> 
   <%= f.file_field :picture, accept:'image/png,image/gif,image/jpeg,image/jpg' %> 
@@ -29,6 +26,7 @@
 </div>
 <div>
   <%= f.label :genre %> 
+  <%= f.collection_check_boxes(:genre_ids, Genre.all, :id, :genre)%>
 </div>
 <div>
   <%= f.label :condition %> 
