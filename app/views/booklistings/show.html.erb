@@ -24,6 +24,9 @@
   <strong>Price:</strong>
   <%= @booklisting.price %>
 </p>
+<button data-stripe="payment">
+  Buy Book <%= number_to_currency(@booklisting.price) %>
+</button>
 
 <h3><%= @booklisting.booklistcomments.count %> Commments</h3>
 
@@ -34,3 +37,19 @@
 
 <%= link_to 'Edit', edit_booklisting_path(@booklisting) %> |
 <%= link_to 'Back', booklistings_path %>
+
+<script src="https://js.stripe.com/v3/"></script>
+
+<script>
+  document
+    .querySelector("[data-stripe='payment']")
+    .addEventListener("click", () => {
+      const stripe = Stripe(
+        "<%= Rails.application.credentials.dig(:stripe, :public_key) %>"
+      );
+
+      stripe.redirectToCheckout({
+        sessionId: "<%= @session_id %>"
+      });
+    });
+</script>

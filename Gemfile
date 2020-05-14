@@ -68,3 +68,7 @@ gem "bootstrap", "~> 4.4"
 gem "simple_form", "~> 5.0"
 
 gem "jquery-rails", "~> 4.4"
+
+gem "stripe", "~> 5.22"
+
+gem "ultrahook", "~> 0.1.5"
