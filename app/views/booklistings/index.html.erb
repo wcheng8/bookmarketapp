@@ -9,6 +9,7 @@
       <th>Author</th>
       <th>Description</th>
       <th>Status</th>
+      <th>Genre</th>
       <th>Price</th>
       <th colspan="3"></th>
     </tr>
@@ -21,6 +22,9 @@
         <td><%= booklisting.author %></td>
         <td><%= booklisting.description %></td>
         <td><%= booklisting.condition.status %></td>
+        <td><%booklisting.genres.each do |b|%>
+          <%= b.genre %>
+        <% end %></td>
         <td><%= booklisting.price %></td>
         <td><%= link_to 'Show', booklisting %></td>
         <td><%= link_to 'Edit', edit_booklisting_path(booklisting) %></td>

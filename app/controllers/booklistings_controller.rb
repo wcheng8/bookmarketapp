@@ -1,6 +1,5 @@
 class BooklistingsController < ApplicationController
   before_action :set_booklisting, only: [:show, :edit, :update, :destroy]
-  before_action :set_condition_and_genre, only: [:new, :edit, :create, :update]
 
   def index
     @booklistings = Booklisting.all.order("created_at DESC")
@@ -19,8 +18,6 @@ class BooklistingsController < ApplicationController
 
   def create
     @booklisting = current_user.booklistings.build(booklisting_params)
-    @booklisting.genre = params[:genre_id]
-    @booklisting.condition_id = params[:condition_id]
 
     if @booklisting.save
       redirect_to @booklisting, notice: 'Booklisting was successfully created.'
@@ -30,7 +27,6 @@ class BooklistingsController < ApplicationController
   end
 
   def update
-    @booklisting.condition_id = params[:condition_id]
     if @booklisting.update(booklisting_params)
       redirect_to @booklisting, notice: 'Booklisting was successfully updated.'
     else
@@ -49,11 +45,7 @@ class BooklistingsController < ApplicationController
     end
 
     def booklisting_params
-      params.require(:booklisting).permit(:title, :author, :description, :price,:picture,:user_id,:condition_id)
+      params.require(:booklisting).permit(:title, :author, :description, :price,:picture,:user_id,:condition_id, genre_ids:[])
     end
 
-    def set_condition_and_genre
-      @conditions = Condition.all.map{|c| [c.status, c.id]}
-      @genres = Genre.all.map{|g| [g.genre, g.id]}
-    end
 end
