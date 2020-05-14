@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :room_messages
+  resources :rooms
   devise_for :users 
   post "/payments/webhook", to: "payments#webhook"
   get "/payments/success", to: "payments#success"
@@ -7,5 +9,6 @@ Rails.application.routes.draw do
     resources :booklistcomments
   end 
   resources :books
-  root 'booklistings#index'
+  root 'rooms#index'
+  # root 'booklistings#index'
 end
