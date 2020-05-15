@@ -72,3 +72,7 @@ gem "jquery-rails", "~> 4.4"
 gem "stripe", "~> 5.22"
 
 gem "ultrahook", "~> 0.1.5"
+
+gem "popper_js", "~> 1.16"
+
+gem "tether-rails", "~> 1.4"

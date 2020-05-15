@@ -9,6 +9,6 @@ Rails.application.routes.draw do
     resources :booklistcomments
   end 
   resources :books
-  root 'rooms#home'
-  # root 'booklistings#index'
+  # root 'rooms#home'
+  root 'booklistings#index'
 end
