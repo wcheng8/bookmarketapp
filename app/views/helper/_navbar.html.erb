@@ -72,14 +72,17 @@
           <li class="nav-item dropdown">
             <div class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <%= current_user.username %>
-              <img class="avatar" src="<%= gravatar_url(current_user) %>">
+              <img class="avatar" src="<%= gravatar_url(current_user) %>", class="nav-link">
             </div>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <ul class="dropdown-item">
+              <ul class="dropdown-item" , class="nav-link">
                 Profile
               </ul>
               <ul class="dropdown-item">
-                <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+                <%= link_to 'Edit Account', destroy_user_session_path, method: :delete %>
+              </ul>
+              <ul class="dropdown-item">
+                <%= link_to 'Logout', edit_user_registration_path%>
               </ul>
             </div>
           </li>

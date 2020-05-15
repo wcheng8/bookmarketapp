@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :room_messages
-  resources :rooms
+  get 'messages/create'
+  post 'message', to: "messages#create"
   devise_for :users 
   post "/payments/webhook", to: "payments#webhook"
   get "/payments/success", to: "payments#success"
