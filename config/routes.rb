@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'messages/create'
-  post 'message', to: "messages#create"
+  get 'rooms/home'
+  post 'messages', to: "messages#create"
   devise_for :users 
   post "/payments/webhook", to: "payments#webhook"
   get "/payments/success", to: "payments#success"
@@ -9,6 +9,6 @@ Rails.application.routes.draw do
     resources :booklistcomments
   end 
   resources :books
-  root 'rooms#index'
+  root 'rooms#home'
   # root 'booklistings#index'
 end
