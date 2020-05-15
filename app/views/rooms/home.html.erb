@@ -6,12 +6,16 @@
     <% end %>
   </div>
 
-  <%= form_with model:@message do |f| %>
-    <div class="input-group mb-3">
-      <%=f.text_field :body, placeholder: "Say Hi!", class:"form-control"%>
-      <div class="input-group-append">
-        <%=f.submit "Send", class: "btn btn-secondary"%>
+  <%if current_user%>
+    <%= form_with model:@message do |f| %>
+      <div class="input-group mb-3">
+        <%=f.text_field :body, placeholder: "Say Hi!", class:"form-control"%>
+        <div class="input-group-append">
+          <%=f.submit "Send", class: "btn btn-secondary"%>
+        </div>
       </div>
-    </div>
+    <% end %>
+  <% else %>
+   You need to be <%= link_to 'Signed In', new_user_session_path %> in order to chat!
   <% end %>
 </div>
