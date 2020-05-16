@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_16_083037) do
+ActiveRecord::Schema.define(version: 2020_05_16_094159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,13 +82,9 @@ ActiveRecord::Schema.define(version: 2020_05_16_083037) do
     t.index ["user_id"], name: "index_books_on_user_id"
   end
 
-  create_table "books_genres", force: :cascade do |t|
-    t.bigint "book_id"
-    t.bigint "genre_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["book_id"], name: "index_books_genres_on_book_id"
-    t.index ["genre_id"], name: "index_books_genres_on_genre_id"
+  create_table "books_genres", id: false, force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.bigint "genre_id", null: false
   end
 
   create_table "conditions", force: :cascade do |t|
@@ -101,6 +97,11 @@ ActiveRecord::Schema.define(version: 2020_05_16_083037) do
     t.string "genre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "genres_recommendations", id: false, force: :cascade do |t|
+    t.bigint "recommendation_id", null: false
+    t.bigint "genre_id", null: false
   end
 
   create_table "messages", force: :cascade do |t|
@@ -152,8 +153,6 @@ ActiveRecord::Schema.define(version: 2020_05_16_083037) do
   add_foreign_key "booklistings", "conditions"
   add_foreign_key "booklistings", "users"
   add_foreign_key "books", "users"
-  add_foreign_key "books_genres", "books"
-  add_foreign_key "books_genres", "genres"
   add_foreign_key "messages", "users"
   add_foreign_key "recommendations", "users"
   add_foreign_key "recommendations_genres", "genres"

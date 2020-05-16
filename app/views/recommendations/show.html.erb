@@ -1,22 +1,24 @@
-<%=image_tag @booklisting.picture, width: '200' if @booklisting.picture.attached? %>
+<%=image_tag @recommendation.picture, width: '200' if @recommendation.picture.attached? %>
 
 <p>
   <strong>Title:</strong>
-  <%= @booklisting.title %>
+  <%= @recommendation.title %>
 </p>
-<p>
-  <strong>Genre:</strong>
-  <%= @booklisting.genre.genre %>
-</p>
+<div>
+  <p>Genre</p>
+  <%@recommendation.genres.each do |r|%>
+    <%= r.genre %>
+  <% end %>
+</div>
 <p>
   <strong>Author:</strong>
-  <%= @booklisting.author %>
+  <%= @recommendation.author %>
 </p>
 
 <p>
-  <strong>Description:</strong>
-  <%= @booklisting.context %>
+  <strong>Context:</strong>
+  <%= @recommendation.context %>
 </p>
 
-<%= link_to 'Edit', edit_booklisting_path(@booklisting) %> |
-<%= link_to 'Back', booklistings_path %>
+<%= link_to 'Edit', edit_recommendation_path(@recommendation) %> |
+<%= link_to 'Back', recommendations_path %>

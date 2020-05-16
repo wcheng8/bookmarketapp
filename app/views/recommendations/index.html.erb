@@ -1,4 +1,4 @@
-<h1>Recommendations</h1>
+<h1>recommendations</h1>
 
 <table>
   <thead>
@@ -16,8 +16,10 @@
       <tr>
         <td><%= link_to recommendation.title, recommendation_path(recommendation) %></td>
         <td><%= recommendation.author %></td>
-        <td><%= recommendation.content %></td>
-        <td><%= recommendation.genre.genre %></td>
+        <td><%= recommendation.context %></td>
+        <td><%recommendation.genres.each do |b|%>
+          <%= b.genre %>
+        <% end %></td>
         <td><%= link_to 'Show', recommendation %></td>
         <td><%= link_to 'Edit', edit_recommendation_path(recommendation) %></td>
         <td><%= link_to 'Destroy', recommendation, method: :delete, data: { confirm: 'Are you sure?' } %></td>

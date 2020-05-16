@@ -4,4 +4,5 @@ class Recommendation < ApplicationRecord
   has_many :recommendations_genres
   has_many :genres, through: :recommendations
   belongs_to :genre
+  has_and_belongs_to_many :genres
 end
