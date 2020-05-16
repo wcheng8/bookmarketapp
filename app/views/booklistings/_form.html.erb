@@ -1,4 +1,4 @@
-<%= form_for @booklisting do |f| %>
+<%= simple_form_for @booklisting do |f| %>
   <% if @booklisting.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@booklisting.errors.count, "error") %> prohibited this booklisting from being saved:</h2>
@@ -13,32 +13,13 @@
 
 <div>
 
-</div>
-  <%= f.label :picture %> 
-  <%= f.file_field :picture, accept:'image/png,image/gif,image/jpeg,image/jpg' %> 
-<div>
-  <%= f.label :title %> 
-  <%= f.text_field :title %>
-</div>
-<div>
-  <%= f.label :author %> 
-  <%= f.text_field :author %>
-</div>
-<div>
-  <%= f.label :genre %> 
-  <%= f.collection_check_boxes(:genre_ids, Genre.all, :id, :genre)%>
-</div>
-<div>
-  <%= f.label :condition %> 
-  <%=f.collection_select(:condition_id, Condition.all, :id, :status, prompt: "Select a category")%>
-</div>
-<div>
-  <%= f.label :price %> 
-  <%= f.number_field :price %>
-</div>
-<div>
-  <%= f.label :description %> 
-  <%= f.text_area :description%>
-</div>
-  <%= f.button :Submit %>
+  <%= f.input :picture, accept:'image/png,image/gif,image/jpeg,image/jpg' %> 
+  <%= f.input :title %>
+  <%= f.input :author %>
+  <%= f.association :genres, as: :check_boxes,collection:Genre.all.map{|g| [g.genre, g.id]}, prompt: "Select a Genre"%>
+  <%= f.input :condition_id, collection: Condition.all.map{|c| [c.status, c.id]}, prompt: "Select a Condition"%>
+  <%= f.input :description%>
+  <%= f.input :price %> 
+  <%= f.button :submit %>
+
 <% end %>
