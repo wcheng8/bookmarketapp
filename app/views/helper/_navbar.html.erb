@@ -21,11 +21,11 @@
             <ul class="dropdown-item">
               <%= link_to 'Recent Listing', booklistings_path %>
             </ul>
-            <ul class="dropdown-item">
-                <%Condition.all.each do |condition|%>
-                   <li class = "<%='active' if params[:condition]==condition.status%>"><%= link_to condition.status, booklistings_path(condition: condition.status) %></li>
-                <% end %>
-            </ul>
+            <%Genre.all.each do |genre|%>
+              <ul class="dropdown-item">
+                  <div class = "<%='active' if params[:genre]==genre.genre%>"><%= link_to genre.genre, booklistings_path(genre: genre.genre) %></div>
+              </ul>
+            <% end %>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -36,6 +36,11 @@
             <ul class="dropdown-item">
               <%= link_to 'All', books_path %>
             </ul>
+            <%Genre.all.each do |genre|%>
+              <ul class="dropdown-item">
+              <%= link_to "Top #{genre.genre}", recommendations_path %>
+              </ul>
+            <% end %>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -46,6 +51,11 @@
             <ul class="dropdown-item">
               <%= link_to 'Recent Recommendations', recommendations_path %>
             </ul>
+            <%Genre.all.each do |genre|%>
+              <ul class="dropdown-item">
+              <%= link_to "Top #{genre.genre}", recommendations_path %>
+              </ul>
+            <% end %>
           </div>
         </li>
         <li class="nav-item dropdown">
