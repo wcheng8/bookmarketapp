@@ -14,7 +14,12 @@
   <strong>Author:</strong>
   <%= @booklisting.author %>
 </p>
-
+<div>
+  <p>Genre</p>
+  <%@booklisting.genres.each do |b|%>
+    <%= b.genre %>
+  <% end %>
+</div>
 <p>
   <strong>Description:</strong>
   <%= @booklisting.description %>

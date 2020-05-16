@@ -4,24 +4,21 @@
   <strong>Title:</strong>
   <%= @book.title %>
 </p>
-<p>
-  <strong>Genre:</strong>
-  <%= @book.genre.genre %>
-</p>
+<div>
+  <p>Genre</p>
+  <%@book.genres.each do |b|%>
+    <%= b.genre %>
+  <% end %>
+</div>
 <p>
   <strong>Author:</strong>
   <%= @book.author %>
 </p>
 
 <p>
-  <strong>Description:</strong>
-  <%= @book.description %>
+  <strong>Context:</strong>
+  <%= @book.context %>
 </p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @book.price %>
-</p>
-
-<%= link_to 'Edit', edit_booklisting_path(@book) %> |
-<%= link_to 'Back', booklistings_path %>
+<%= link_to 'Edit', edit_book_path(@book) %> |
+<%= link_to 'Back', books_path %>
