@@ -2,7 +2,12 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 
   def index
-    @books = Book.all.order("created_at DESC")
+    if params[:genre].blank?
+      @books = Book.all.order("created_at DESC")
+    else
+      @genre_id = Genre.find_by(genre: params[:genre]).id
+      @books = Genre.find(@genre_id).books.all
+    end
   end
 
   def show

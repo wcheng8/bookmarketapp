@@ -23,7 +23,7 @@
             </ul>
             <%Genre.all.each do |genre|%>
               <ul class="dropdown-item">
-                  <div class = "<%='active' if params[:genre]==genre.genre%>"><%= link_to genre.genre, booklistings_path(genre: genre.genre) %></div>
+                <div class = "<%='active' if params[:genre]==genre.genre%>"><%= link_to genre.genre, booklistings_path(genre: genre.genre) %></div>
               </ul>
             <% end %>
           </div>
@@ -38,7 +38,7 @@
             </ul>
             <%Genre.all.each do |genre|%>
               <ul class="dropdown-item">
-              <%= link_to "Top #{genre.genre}", recommendations_path %>
+                <div class = "<%='active' if params[:genre]==genre.genre%>"><%= link_to genre.genre, books_path(genre: genre.genre) %></div>
               </ul>
             <% end %>
           </div>
@@ -53,7 +53,7 @@
             </ul>
             <%Genre.all.each do |genre|%>
               <ul class="dropdown-item">
-              <%= link_to "Top #{genre.genre}", recommendations_path %>
+                <div class = "<%='active' if params[:genre]==genre.genre%>"><%= link_to genre.genre, recommendations_path(genre: genre.genre) %></div>
               </ul>
             <% end %>
           </div>

@@ -2,7 +2,12 @@ class RecommendationsController < ApplicationController
   before_action :set_recommendation, only: [:show, :edit, :update, :destroy]
 
   def index
-    @recommendations = Recommendation.all.order("created_at DESC")
+    if params[:genre].blank?
+      @recommendations = Recommendation.all.order("created_at DESC")
+    else
+      @genre_id = Genre.find_by(genre: params[:genre]).id
+      @recommendations = Genre.find(@genre_id).recommendations.all
+    end
   end
 
   def show
