@@ -29,9 +29,11 @@
   <strong>Price:</strong>
   <%= @booklisting.price %>
 </p>
-<button data-stripe="payment">
+<button data-stripe="payment" class="btn btn-primary">
   Buy Book <%= number_to_currency(@booklisting.price) %>
 </button>
+<br>
+<br>
 
 <h3><%= @booklisting.booklistcomments.count %> Commments</h3>
 
