@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_16_094159) do
+ActiveRecord::Schema.define(version: 2020_05_16_103919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,15 +43,6 @@ ActiveRecord::Schema.define(version: 2020_05_16_094159) do
     t.datetime "updated_at", null: false
     t.bigint "booklisting_id"
     t.index ["booklisting_id"], name: "index_booklistcomments_on_booklisting_id"
-  end
-
-  create_table "booklisting_genres", force: :cascade do |t|
-    t.bigint "genre_id"
-    t.bigint "booklisting_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["booklisting_id"], name: "index_booklisting_genres_on_booklisting_id"
-    t.index ["genre_id"], name: "index_booklisting_genres_on_genre_id"
   end
 
   create_table "booklistings", force: :cascade do |t|
@@ -123,15 +114,6 @@ ActiveRecord::Schema.define(version: 2020_05_16_094159) do
     t.index ["user_id"], name: "index_recommendations_on_user_id"
   end
 
-  create_table "recommendations_genres", force: :cascade do |t|
-    t.bigint "recommendation_id"
-    t.bigint "genre_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["genre_id"], name: "index_recommendations_genres_on_genre_id"
-    t.index ["recommendation_id"], name: "index_recommendations_genres_on_recommendation_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -148,13 +130,9 @@ ActiveRecord::Schema.define(version: 2020_05_16_094159) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "booklistcomments", "booklistings"
-  add_foreign_key "booklisting_genres", "booklistings"
-  add_foreign_key "booklisting_genres", "genres"
   add_foreign_key "booklistings", "conditions"
   add_foreign_key "booklistings", "users"
   add_foreign_key "books", "users"
   add_foreign_key "messages", "users"
   add_foreign_key "recommendations", "users"
-  add_foreign_key "recommendations_genres", "genres"
-  add_foreign_key "recommendations_genres", "recommendations"
 end
