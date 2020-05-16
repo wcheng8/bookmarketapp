@@ -5,36 +5,33 @@ class BooklistingsController < ApplicationController
     if params[:genre].blank?
       @booklistings = Booklisting.all.order("created_at DESC")
     else
-      @booklistings = Booklisting.all.order("created_at DESC")
-
-      # @genre_ids = Genre.find_by(genre: params[:genre]).genre
-      # # @bookgenre = BooklistingGenre.find(:genre_id => @genre_ids).id
-      # @booklistings = Booklisting.joins(:genres).where(:genre => @genre_ids).all
+      @genre_id = Genre.find_by(genre: params[:genre]).id
+      @booklistings = Genre.find(@genre_id).booklistings.all
     end 
   end
 
   def show
-    session = Stripe::Checkout::Session.create(
-      payment_method_types: ['card'],
-      customer_email: current_user.email,
-      line_items: [{
-          name: @booklisting.title,
-          description: @booklisting.description,
-          amount: @booklisting.price * 100,
-          currency: 'aud',
-          quantity: 1,
-      }],
-      payment_intent_data: {
-          metadata: {
-              user_id: current_user.id,
-              listing_id: @booklisting.id
-          }
-      },
-      success_url: "#{root_url}payments/success?userId=#{current_user.id}&listingId=#{@booklisting.id}",
-      cancel_url: "#{root_url}listings"
-  )
+  #   session = Stripe::Checkout::Session.create(
+  #     payment_method_types: ['card'],
+  #     customer_email: current_user.email,
+  #     line_items: [{
+  #         name: @booklisting.title,
+  #         description: @booklisting.description,
+  #         amount: @booklisting.price * 100,
+  #         currency: 'aud',
+  #         quantity: 1,
+  #     }],
+  #     payment_intent_data: {
+  #         metadata: {
+  #             user_id: current_user.id,
+  #             listing_id: @booklisting.id
+  #         }
+  #     },
+  #     success_url: "#{root_url}payments/success?userId=#{current_user.id}&listingId=#{@booklisting.id}",
+  #     cancel_url: "#{root_url}listings"
+  # )
 
-  @session_id = session.id
+  # @session_id = session.id
   end
 
   def new

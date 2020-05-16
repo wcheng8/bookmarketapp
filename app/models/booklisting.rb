@@ -5,4 +5,5 @@ class Booklisting < ApplicationRecord
   has_many :genres, through: :booklisting_genres
   belongs_to :user
   has_many :booklistcomments
+  has_and_belongs_to_many :genres
 end
