@@ -1,3 +1,3 @@
 class Condition < ApplicationRecord
-  has_many :booklistings
+  has_many :booklistings, dependent: :destroy
 end

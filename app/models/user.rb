@@ -4,9 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :username, uniqueness: true, presence: true
-  has_many :booklistings
-  has_many :recommendations
-  has_many :books
-  has_many :bookratings
+  has_many :booklistings, dependent: :destroy
+  has_many :recommendations, dependent: :destroy
+  has_many :books, dependent: :destroy
+  has_many :bookratings, dependent: :destroy
   
 end

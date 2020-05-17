@@ -1,5 +1,5 @@
 class Genre < ApplicationRecord
-  has_and_belongs_to_many :booklistings
-  has_and_belongs_to_many :books
-  has_and_belongs_to_many :recommendations
+  has_and_belongs_to_many :booklistings, dependent: :destroy
+  has_and_belongs_to_many :books, dependent: :destroy
+  has_and_belongs_to_many :recommendations, dependent: :destroy
 end

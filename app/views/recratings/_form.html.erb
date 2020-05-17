@@ -1,6 +1,15 @@
 <%=simple_form_for [@recommendation, @recommendation.recratings.build] do |f|%>
-  <%= f.input :score %><br>
+  
+    <div id="star-rating"></div>
   <%= f.input :title %><br>
   <%= f.input :context %><br>
   <%= f.button :submit %>
+
 <% end %>
+
+<script>
+  $('#star-rating').raty({
+    path:'/assets/',
+    scoreName: 'recrating[score]'
+  })
+</script>

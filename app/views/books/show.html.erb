@@ -35,6 +35,8 @@
     Score: <div class="star-rating" data-score=<%=rating.score%>></div>
     Title: <%=rating.title%><br>
     Content: <%=rating.context%><br>
+    <%= link_to 'Delete',[rating.book, rating], method: :delete, data: {confirm: 'Are you sure?'} %>
+    <br>
   <% end %> 
 <% end %>
 
@@ -49,12 +51,12 @@
 
 
 
-  <script>
-    $('.star-rating').raty({
-      path: '/assets/',
-      readOnly:  true,
-      score: function(){
-        return $(this).attr('data-score')
-      },
-      })
-  </script>
+<script>
+  $('.star-rating').raty({
+    path: '/assets/',
+    readOnly:  true,
+    score: function(){
+      return $(this).attr('data-score')
+    },
+    })
+</script>

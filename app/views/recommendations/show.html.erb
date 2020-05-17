@@ -1,4 +1,6 @@
 <%=image_tag @recommendation.picture, width: '200' if @recommendation.picture.attached? %>
+<h3><%= @recommendation.recratings.count %> Ratings</h3>
+<div class="star-rating" data-score=<%=@avg_rating%>></div>
 
 <p>
   <strong>Title:</strong>
@@ -20,12 +22,35 @@
   <%= @recommendation.context %>
 </p>
 
-<h3><%= @recommendation.recratings.count %> Ratings</h3>
 
 
-<%= render @recommendation.recratings %>
+<%if @recratings.blank?%>
+  <h4>There are no reviews yet, would you like to write one?</h4>
+  <% else %>
+  <% @recratings.each do |rating| %>
+    <%if rating.user_id?%>
+      User: <%=rating.user.username%><br>
+    <% end %>
+    Score: <div class="star-rating" data-score=<%=rating.score%>></div>
+    Title: <%=rating.title%><br>
+    Content: <%=rating.context%><br>
+    <%= link_to 'Delete',[rating.recommendation, rating], method: :delete, data: {confirm: 'Are you sure?'} %>
+    <br>
+  <% end %> 
+<% end %>
+
 <h3>Add a Rating</h3>
 <%= render 'recratings/form' %>
 
 <%= link_to 'Edit', edit_recommendation_path(@recommendation) %> |
 <%= link_to 'Back', recommendations_path %>
+
+<script>
+  $('.star-rating').raty({
+    path: '/assets/',
+    readOnly:  true,
+    score: function(){
+      return $(this).attr('data-score')
+    },
+    })
+</script>

@@ -11,6 +11,13 @@ class RecommendationsController < ApplicationController
   end
 
   def show
+    @recratings = Recrating.where(recommendation_id: @recommendation.id).order("created_at DESC")
+
+    if @recratings.blank?
+      @avg_rating = 0
+    else
+      @avg_rating = @recratings.average(:score).round(2)
+    end
   end
 
   def new
