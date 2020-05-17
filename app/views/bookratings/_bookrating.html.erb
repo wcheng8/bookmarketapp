@@ -1,5 +1,7 @@
 <div>
-  User: <%=bookrating.user_id%><br>
+  <%if bookrating.user_id?%>
+    User: <%=bookrating.user.username%><br>
+  <% end %>
   Score: <div class="star-rating"></div>
   Title: <%=bookrating.title%><br>
   Content: <%=bookrating.context%><br>
