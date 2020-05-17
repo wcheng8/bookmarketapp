@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   resources :booklistings do
     resources :booklistcomments
   end 
-  resources :books
+  resources :books do
+    resources :bookratings    
+  end
   # root 'rooms#home'
   root 'booklistings#index'
 end

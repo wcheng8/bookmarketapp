@@ -1,0 +1,7 @@
+<div>
+  Score: <%=bookrating.score%><br>
+  Title: <%=bookrating.title%><br>
+  Content: <%=bookrating.context%><br>
+
+  <%= link_to 'Delete', [bookrating.book, bookrating], method: :delete, data: {confirm: 'Are you sure?'} %>
+</div>

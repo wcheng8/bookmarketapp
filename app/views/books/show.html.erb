@@ -20,5 +20,17 @@
   <%= @book.context %>
 </p>
 
+<br>
+
+<h3><%= @book.bookratings.count %> Ratings</h3>
+
+
+<%= render @book.bookratings %>
+<h3>Add a Rating</h3>
+<%= render 'bookratings/form' %>
+
+<%= link_to 'Edit', edit_book_path(@book) %> |
+<%= link_to 'Back', books_path %>
+
 <%= link_to 'Edit', edit_book_path(@book) %> |
 <%= link_to 'Back', books_path %>
