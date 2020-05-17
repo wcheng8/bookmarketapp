@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  score: 1
+  title: MyString
+  context: MyString
+  book: one
+
+two:
+  score: 1
+  title: MyString
+  context: MyString
+  book: two

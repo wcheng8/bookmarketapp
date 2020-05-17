@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'bookratings/create'
   get 'rooms/home'
   post 'messages', to: "messages#create"
   devise_for :users 
