@@ -2,12 +2,18 @@ class BooklistingsController < ApplicationController
   before_action :set_booklisting, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params[:genre].blank?
+    if params[:genre].blank? && params[:search].blank?
       @booklistings = Booklisting.all.order("created_at DESC")
-    else
+    elsif params[:genre] 
       @genre_id = Genre.find_by(genre: params[:genre]).id
       @booklistings = Genre.find(@genre_id).booklistings.all
-    end 
+    elsif params[:genre] && params[:search]
+      @genre_id = Genre.find_by(genre: params[:genre]).id
+      @booklistings = Genre.find(@genre_id).booklistings.all
+      @booklistings = @booklistings.search(params[:search])
+    elsif params[:search]
+      @booklistings = Booklisting.search(params[:search])
+    end
   end
 
   def show
@@ -71,7 +77,7 @@ class BooklistingsController < ApplicationController
     end
 
     def booklisting_params
-      params.require(:booklisting).permit(:title, :author, :description, :price,:picture,:user_id,:condition_id, genre_ids:[])
+      params.require(:booklisting).permit(:title, :author, :description, :price,:picture,:user_id,:condition_id,:search, genre_ids:[])
     end
 
 end
