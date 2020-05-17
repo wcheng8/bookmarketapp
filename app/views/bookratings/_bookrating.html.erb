@@ -1,8 +1,16 @@
 <div>
   User: <%=bookrating.user_id%><br>
-  Score: <%=bookrating.score%><br>
+  Score: <div class="star-rating"></div>
   Title: <%=bookrating.title%><br>
   Content: <%=bookrating.context%><br>
 
   <%= link_to 'Delete', [bookrating.book, bookrating], method: :delete, data: {confirm: 'Are you sure?'} %>
 </div>
+
+<script>
+  $('.star-rating').raty({
+    path: '/assets/',
+    readOnly:  true,
+    score: <%=bookrating.score%>,
+    })
+</script>
