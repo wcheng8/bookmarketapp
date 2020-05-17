@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_17_033442) do
+ActiveRecord::Schema.define(version: 2020_05_17_050324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,7 +70,9 @@ ActiveRecord::Schema.define(version: 2020_05_17_033442) do
     t.bigint "book_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["book_id"], name: "index_bookratings_on_book_id"
+    t.index ["user_id"], name: "index_bookratings_on_user_id"
   end
 
   create_table "books", force: :cascade do |t|
@@ -124,6 +126,16 @@ ActiveRecord::Schema.define(version: 2020_05_17_033442) do
     t.index ["user_id"], name: "index_recommendations_on_user_id"
   end
 
+  create_table "recratings", force: :cascade do |t|
+    t.integer "score"
+    t.bigint "recommendation_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recommendation_id"], name: "index_recratings_on_recommendation_id"
+    t.index ["user_id"], name: "index_recratings_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -143,7 +155,10 @@ ActiveRecord::Schema.define(version: 2020_05_17_033442) do
   add_foreign_key "booklistings", "conditions"
   add_foreign_key "booklistings", "users"
   add_foreign_key "bookratings", "books"
+  add_foreign_key "bookratings", "users"
   add_foreign_key "books", "users"
   add_foreign_key "messages", "users"
   add_foreign_key "recommendations", "users"
+  add_foreign_key "recratings", "recommendations"
+  add_foreign_key "recratings", "users"
 end

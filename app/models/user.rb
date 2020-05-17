@@ -7,5 +7,6 @@ class User < ApplicationRecord
   has_many :booklistings
   has_many :recommendations
   has_many :books
+  has_many :bookratings
   
 end
