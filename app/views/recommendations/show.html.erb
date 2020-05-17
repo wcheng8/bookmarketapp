@@ -20,5 +20,12 @@
   <%= @recommendation.context %>
 </p>
 
+<h3><%= @recommendation.recratings.count %> Ratings</h3>
+
+
+<%= render @recommendation.recratings %>
+<h3>Add a Rating</h3>
+<%= render 'recratings/form' %>
+
 <%= link_to 'Edit', edit_recommendation_path(@recommendation) %> |
 <%= link_to 'Back', recommendations_path %>

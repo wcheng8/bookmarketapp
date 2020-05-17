@@ -1,0 +1,2 @@
+module RecratingsHelper
+end

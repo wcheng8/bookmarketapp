@@ -1,0 +1,6 @@
+<%=simple_form_for [@recommendation, @recommendation.recratings.build] do |f|%>
+  <%= f.input :score %><br>
+  <%= f.input :title %><br>
+  <%= f.input :context %><br>
+  <%= f.button :submit %>
+<% end %>

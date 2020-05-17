@@ -1,0 +1,8 @@
+<div>
+  User: <%=recrating.user_id%><br>
+  Score: <%=recrating.score%><br>
+  Title: <%=recrating.title%><br>
+  Content: <%=recrating.context%><br>
+
+  <%= link_to 'Delete', [recrating.book, recrating], method: :delete, data: {confirm: 'Are you sure?'} %>
+</div>
