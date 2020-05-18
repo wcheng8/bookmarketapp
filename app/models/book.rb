@@ -3,4 +3,5 @@ class Book < ApplicationRecord
   belongs_to :user
   has_and_belongs_to_many :genres
   has_many :bookratings, dependent: :destroy
+  paginates_per 2
 end

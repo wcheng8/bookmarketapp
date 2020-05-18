@@ -31,7 +31,8 @@
       </div>   
     <% end %>
 </div>
-
-<br>
+<div style="display: flex; justify-content:center">
+  <%=paginate @books%>
+</div>
 
 <%= link_to 'New book', new_book_path %>

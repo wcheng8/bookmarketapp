@@ -1,24 +1,27 @@
 <div class="jumbotron">
 <div class="row">
   <div class="col-md-4">
-    <%=image_tag @book.picture, width: '200' if @book.picture.attached? %>
+    <div class="text-center">
+      <%=image_tag @book.picture,width: '200' if @book.picture.attached? %>
+    </div>
     <hr class="my-4">
-    <div class="star-rating" data-score=<%=@avg_rating%>></div>
-    <p>
-      <strong>Title:</strong>
-      <%= @book.title %>
-    </p>
-    <div>
-      <strong>Genre:</strong>
-      <%@book.genres.each do |b|%>
-        <%= b.genre %>
-      <% end %>
+    <div class="star-rating text-center" data-score=<%=@avg_rating%>></div>
+    <div class="pl-4">
+      <p>
+        <%= @book.title %>
+      </p>
+      <div>
+        <strong>Genre:</strong>
+        <%@book.genres.each do |b|%>
+          <%= b.genre %>
+        <% end %>
+      </div>
+      <div>
+        <strong>Author:</strong>
+        <%= @book.author %>
+      </div>
     </div>
-    <div>
-      <strong>Author:</strong>
-      <%= @book.author %>
     </div>
-  </div>
   <div class="col-md-6">
     <div>
       <strong>Context:</strong>
@@ -29,21 +32,23 @@
 </div>
 </div>
 
-<%if @bookratings.blank?%>
-  <h4 class="pt-5">There are no revies yet, would you like to write one?</h4>
-  <% else %>
-  <div class="pt-5" ><%= @book.bookratings.count %> Ratings</div>
-  <% @bookratings.each do |rating| %>
-    <%if rating.user_id?%>
-      User: <%=rating.user.username%><br>
-    <% end %>
-    Score: <div class="star-rating" data-score=<%=rating.score%>></div>
-    Title: <%=rating.title%><br>
-    Content: <%=rating.context%><br>
-    <%= link_to 'Delete',[rating.book, rating], method: :delete, data: {confirm: 'Are you sure?'} %>
-    <br>
-  <% end %> 
-<% end %>
+<div class="col-md-6 offset-md-1">
+  <%if @bookratings.blank?%>
+    <h2 class="pt-5">There are no revies yet, would you like to write one?</h2>
+    <% else %>
+    <h2 class="pt-5" ><%= @book.bookratings.count %> Ratings</h2>
+    <% @bookratings.each do |rating| %>
+      <%if rating.user_id?%>
+        User: <%=rating.user.username%><br>
+      <% end %>
+      Score: <div class="star-rating" data-score=<%=rating.score%>></div>
+      Title: <%=rating.title%><br>
+      Content: <%=rating.context%><br>
+      <%= link_to 'Delete',[rating.book, rating], method: :delete, data: {confirm: 'Are you sure?'} %>
+      <br>
+    <% end %> 
+  <% end %>
+</div>
 
 <div class="col-md-6 pt-5">
   <h3>Add a Rating</h3>

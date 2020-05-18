@@ -3,10 +3,10 @@ class BooksController < ApplicationController
 
   def index
     if params[:genre].blank?
-      @books = Book.all.order("created_at DESC")
+      @books = Book.all.order("created_at DESC").page(params[:page])
     else
       @genre_id = Genre.find_by(genre: params[:genre]).id
-      @books = Genre.find(@genre_id).books.all
+      @books = Genre.find(@genre_id).books.all.order("created_at DESC").page(params[:page])
     end
   end
 

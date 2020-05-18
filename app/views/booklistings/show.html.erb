@@ -1,12 +1,12 @@
 <div class="jumbotron">
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-6 text-center">
     <%=image_tag @booklisting.picture, width: '400' if @booklisting.picture.attached? %>
   </div>
   <hr class="my-4">
-  <div class="col-md-6">
-    <div>
-      <strong>Title:</strong>
+  <div class="col-md-6 pl-5">
+    <div style="font-size: 25px;">
+      <strong style="font-weight">Title:</strong>
       <%= @booklisting.title %>
     </div>
     <div>
@@ -28,7 +28,7 @@
       <%= @booklisting.description %>
     </div>
 
-    <div>
+    <div class="pb-2">
       <strong>Price:</strong>
       <%= @booklisting.price %>
     </div>
@@ -41,12 +41,12 @@
 <br>
 <br>
 
-<h3 class = "pt-5"><%= @booklisting.booklistcomments.count %> Comments</h3>
+<h3 class = "col-md-6 offset-md-1"><%= @booklisting.booklistcomments.count %> Comments</h3>
 
 <%= render @booklisting.booklistcomments %>
 
 <div class="col-md-6 pt-5">
-  <h3>Add a Comment</h3>
+  <h2>Add a Comment</h2>
   <%= render 'booklistcomments/form' %>
 </div>
 

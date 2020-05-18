@@ -76,3 +76,6 @@ gem "ultrahook", "~> 0.1.5"
 gem "popper_js", "~> 1.16"
 
 gem "tether-rails", "~> 1.4"
+
+
+gem "kaminari", "~> 1.2"
