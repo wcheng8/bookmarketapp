@@ -1,32 +1,32 @@
 <h1>Books</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Author</th>
-      <th>Description</th>
-      <th>Genre</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="row">
     <% @books.each do |book| %>
-      <tr>
-        <td><%= link_to book.title, book_path(book) %></td>
-        <td><%= book.author %></td>
-        <td><%= book.context %></td>
-        <td><%book.genres.each do |b|%>
-          <%= b.genre %>
-        <% end %></td>
-        <td><%= link_to 'Show', book %></td>
-        <td><%= link_to 'Edit', edit_book_path(book) %></td>
-        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class="col-md-3 pb-5">
+        <div class="card ">
+          <img class="card-img-top" <%=image_tag book.picture, height: '250' if book.picture.attached? %>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item text-left">
+              <div><%book.genres.each do |b|%>
+                <%= link_to b.genre, books_path(genre: b.genre) %>
+              <% end %>
+              </div>
+            </li>
+          </ul>
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to book.title, book_path(book) %></h5>
+            <p class="card-text">By: <%= book.author %></p>
+            <p class="card-text"><%= truncate(book.context, length:100){link_to 'Read More', book} %></p>
+          </div>
+          <div class="card-footer text-center">
+            <%= link_to 'Show', book, class:"card-link" %>
+            <%= link_to 'Edit', edit_book_path(book) , class:"card-link"%>
+            <%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' }, class:"card-link" %>
+          </div>
+        </div>
+      </div>   
     <% end %>
-  </tbody>
-</table>
+</div>
 
 <br>
 
