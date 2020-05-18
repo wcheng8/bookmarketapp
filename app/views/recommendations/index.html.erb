@@ -11,8 +11,11 @@
                 <%= link_to b.genre, recommendations_path(genre: b.genre) %>
               <% end %>
               </div>
-            </li>
 
+            </li>
+            <li class="list-group-item text-left">
+              <div class="star-rating" data-score= <%=(recommendation.recratings.map{|r| r.score}.inject{|sum, number| sum + number}/(recommendation.recratings.size).to_f).round(2)%>></div>
+            </li>
           </ul>
           <div class="card-body">
             <h5 class="card-title"><%= link_to recommendation.title, recommendation_path(recommendation) %></h5>
@@ -33,3 +36,14 @@
 <br>
 
 <%= link_to 'New recommendation', new_recommendation_path %>
+
+
+<script>
+  $('.star-rating').raty({
+    path: '/assets/',
+    readOnly:  true,
+    score: function(){
+      return $(this).attr('data-score')
+    },
+    })
+</script>
