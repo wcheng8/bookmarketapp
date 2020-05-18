@@ -1,32 +1,39 @@
-<%=image_tag @recommendation.picture, width: '200' if @recommendation.picture.attached? %>
-<h3><%= @recommendation.recratings.count %> Ratings</h3>
-<div class="star-rating" data-score=<%=@avg_rating%>></div>
+<div class="jumbotron">
+<div class="row">
+  <div class="col-md-4">
+    <%=image_tag @recommendation.picture, width: '200' if @recommendation.picture.attached? %>
+    <div class="star-rating" data-score=<%=@avg_rating%>></div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @recommendation.title %>
-</p>
-<div>
-  <p>Genre</p>
-  <%@recommendation.genres.each do |r|%>
-    <%= r.genre %>
-  <% end %>
+    <p>
+      <strong>Title:</strong>
+      <%= @recommendation.title %>
+    </p>
+    <div>
+      <strong>Genre</strong>
+      <%@recommendation.genres.each do |r|%>
+        <%= r.genre %>
+      <% end %>
+    </div>
+    <div>
+      <strong>Author:</strong>
+      <%= @recommendation.author %>
+    </div>
+  </div>
+  <div class="col-md-7">
+    <div>
+      <strong>Context:</strong>
+      <%= @recommendation.context %>
+    </div>
+  </div>
 </div>
-<p>
-  <strong>Author:</strong>
-  <%= @recommendation.author %>
-</p>
-
-<p>
-  <strong>Context:</strong>
-  <%= @recommendation.context %>
-</p>
+</div>
 
 
 
 <%if @recratings.blank?%>
-  <h4>There are no reviews yet, would you like to write one?</h4>
+  <h4 class="pt-5">There are no reviews yet, would you like to write one?</h4>
   <% else %>
+  <div class="pt-5"><%= @recommendation.recratings.count %> Ratings</div>
   <% @recratings.each do |rating| %>
     <%if rating.user_id?%>
       User: <%=rating.user.username%><br>
@@ -39,8 +46,10 @@
   <% end %> 
 <% end %>
 
-<h3>Add a Rating</h3>
-<%= render 'recratings/form' %>
+<div class="col-md-6 pt-5">
+  <h3>Add a Rating</h3>
+  <%= render 'recratings/form' %>
+</div>
 
 <%= link_to 'Edit', edit_recommendation_path(@recommendation) %> |
 <%= link_to 'Back', recommendations_path %>

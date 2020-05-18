@@ -1,33 +1,37 @@
-<%=image_tag @book.picture, width: '200' if @book.picture.attached? %>
-<div class="star-rating" data-score=<%=@avg_rating%>></div>
-<h3><%= @book.bookratings.count %> Ratings</h3>
-<p>
-  <strong>Title:</strong>
-  <%= @book.title %>
-</p>
-<div>
-  <p>Genre</p>
-  <%@book.genres.each do |b|%>
-    <%= b.genre %>
-  <% end %>
+<div class="jumbotron">
+<div class="row">
+  <div class="col-md-4">
+    <%=image_tag @book.picture, width: '200' if @book.picture.attached? %>
+    <div class="star-rating" data-score=<%=@avg_rating%>></div>
+    <p>
+      <strong>Title:</strong>
+      <%= @book.title %>
+    </p>
+    <div>
+      <strong>Genre:</strong>
+      <%@book.genres.each do |b|%>
+        <%= b.genre %>
+      <% end %>
+    </div>
+    <div>
+      <strong>Author:</strong>
+      <%= @book.author %>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div>
+      <strong>Context:</strong>
+      <%= @book.context %>
+    </div>
+  </div>
+
 </div>
-<p>
-  <strong>Author:</strong>
-  <%= @book.author %>
-</p>
-
-<p>
-  <strong>Context:</strong>
-  <%= @book.context %>
-</p>
-
-<br>
-
-
+</div>
 
 <%if @bookratings.blank?%>
-  <h4>There are no revies yet, would you like to write one?</h4>
+  <h4 class="pt-5">There are no revies yet, would you like to write one?</h4>
   <% else %>
+  <div class="pt-5" ><%= @book.bookratings.count %> Ratings</div>
   <% @bookratings.each do |rating| %>
     <%if rating.user_id?%>
       User: <%=rating.user.username%><br>
@@ -40,16 +44,13 @@
   <% end %> 
 <% end %>
 
-<h3>Add a Rating</h3>
-<%= render 'bookratings/form' %>
+<div class="col-md-6 pt-5">
+  <h3>Add a Rating</h3>
+  <%= render 'bookratings/form' %>
+</div>
 
 <%= link_to 'Edit', edit_book_path(@book) %> |
 <%= link_to 'Back', books_path %>
-
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
-
-
 
 <script>
   $('.star-rating').raty({

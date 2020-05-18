@@ -1,46 +1,53 @@
-<p id="notice"><%= notice %></p>
+<div class="jumbotron">
+<div class="row">
+  <div class="col-md-6">
+    <%=image_tag @booklisting.picture, width: '400' if @booklisting.picture.attached? %>
+  </div>
+  <div class="col-md-6">
+    <div>
+      <strong>Title:</strong>
+      <%= @booklisting.title %>
+    </div>
+    <div>
+      <strong>Condition:</strong>
+      <%= @booklisting.condition.status %>
+    </div>
+    <div>
+      <strong>Author:</strong>
+      <%= @booklisting.author %>
+    </div>
+    <div>
+      <div>Genre</div>
+      <%@booklisting.genres.each do |b|%>
+        <%= b.genre %>
+      <% end %>
+    </div>
+    <div>
+      <strong>Description:</strong>
+      <%= @booklisting.description %>
+    </div>
 
-<%=image_tag @booklisting.picture, width: '200' if @booklisting.picture.attached? %>
-
-<p>
-  <strong>Title:</strong>
-  <%= @booklisting.title %>
-</p>
-<p>
-  <strong>Condition:</strong>
-  <%= @booklisting.condition.status %>
-</p>
-<p>
-  <strong>Author:</strong>
-  <%= @booklisting.author %>
-</p>
-<div>
-  <p>Genre</p>
-  <%@booklisting.genres.each do |b|%>
-    <%= b.genre %>
-  <% end %>
+    <div>
+      <strong>Price:</strong>
+      <%= @booklisting.price %>
+    </div>
+    <button data-stripe="payment" class="btn btn-primary">
+      Buy Book <%= number_to_currency(@booklisting.price) %>
+    </button>
+    </div>
+    </div>
 </div>
-<p>
-  <strong>Description:</strong>
-  <%= @booklisting.description %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @booklisting.price %>
-</p>
-<button data-stripe="payment" class="btn btn-primary">
-  Buy Book <%= number_to_currency(@booklisting.price) %>
-</button>
 <br>
 <br>
 
-<h3><%= @booklisting.booklistcomments.count %> Comments</h3>
-
+<h3 class = "pt-5"><%= @booklisting.booklistcomments.count %> Comments</h3>
 
 <%= render @booklisting.booklistcomments %>
-<h3>Add a Comment</h3>
-<%= render 'booklistcomments/form' %>
+
+<div class="col-md-6 pt-5">
+  <h3>Add a Comment</h3>
+  <%= render 'booklistcomments/form' %>
+</div>
 
 <%= link_to 'Edit', edit_booklisting_path(@booklisting) %> |
 <%= link_to 'Back', booklistings_path %>
