@@ -2,6 +2,7 @@
 <div class="row">
   <div class="col-md-4">
     <%=image_tag @book.picture, width: '200' if @book.picture.attached? %>
+    <hr class="my-4">
     <div class="star-rating" data-score=<%=@avg_rating%>></div>
     <p>
       <strong>Title:</strong>

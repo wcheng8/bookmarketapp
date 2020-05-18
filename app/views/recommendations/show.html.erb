@@ -3,7 +3,7 @@
   <div class="col-md-4">
     <%=image_tag @recommendation.picture, width: '200' if @recommendation.picture.attached? %>
     <div class="star-rating" data-score=<%=@avg_rating%>></div>
-
+    <hr class="my-4">
     <p>
       <strong>Title:</strong>
       <%= @recommendation.title %>
