@@ -3,7 +3,7 @@ class RecommendationsController < ApplicationController
 
   def index
     if params[:genre].blank?
-      @recommendations = Recommendation.all.order("created_at DESC")
+      @recommendations = Recommendation.all.order("created_at DESC").page(params[:page])
     else
       @genre_id = Genre.find_by(genre: params[:genre]).id
       @recommendations = Genre.find(@genre_id).recommendations.all
@@ -11,7 +11,7 @@ class RecommendationsController < ApplicationController
   end
 
   def show
-    @recratings = Recrating.where(recommendation_id: @recommendation.id).order("created_at DESC")
+    @recratings = Recrating.where(recommendation_id: @recommendation.id).order("created_at DESC").page(params[:page])
 
     if @recratings.blank?
       @avg_rating = 0

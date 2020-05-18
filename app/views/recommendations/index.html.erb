@@ -34,8 +34,12 @@
 </div>
 
 <br>
-
-<%= link_to 'New recommendation', new_recommendation_path %>
+<div class="col-md-5">
+  <%= link_to 'New recommendation', new_recommendation_path , class: "btn btn-primary"%>
+</div>
+<div style="display: flex; justify-content:center">
+  <%=paginate @recommendations%>
+</div>
 
 
 <script>

@@ -3,16 +3,16 @@ class BooklistingsController < ApplicationController
 
   def index
     if params[:genre].blank? && params[:search].blank?
-      @booklistings = Booklisting.all.order("created_at DESC")
+      @booklistings = Booklisting.all.order("created_at DESC").page(params[:page])
     elsif params[:genre] 
       @genre_id = Genre.find_by(genre: params[:genre]).id
-      @booklistings = Genre.find(@genre_id).booklistings.all
+      @booklistings = Genre.find(@genre_id).booklistings.all.page(params[:page])
     elsif params[:genre] && params[:search]
       @genre_id = Genre.find_by(genre: params[:genre]).id
-      @booklistings = Genre.find(@genre_id).booklistings.all
+      @booklistings = Genre.find(@genre_id).booklistings.all.page(params[:page])
       @booklistings = @booklistings.search(params[:search])
     elsif params[:search]
-      @booklistings = Booklisting.search(params[:search])
+      @booklistings = Booklisting.search(params[:search]).page(params[:page])
     end
   end
 

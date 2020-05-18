@@ -4,6 +4,7 @@ class Booklisting < ApplicationRecord
   belongs_to :user
   has_many :booklistcomments, dependent: :destroy
   has_and_belongs_to_many :genres
+  paginates_per 2
 
   def self.search(search)
     where("title ILIKE ?", "%#{search}%") 
