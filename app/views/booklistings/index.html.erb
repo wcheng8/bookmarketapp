@@ -18,7 +18,7 @@
             <ul class="list-group list-group-flush">
               <li class="list-group-item text-left">
                 <p><%booklisting.genres.each do |b|%>
-                  <%= b.genre %>
+                  <%= link_to b.genre, booklistings_path(genre: b.genre) %>
                 <% end %>
                 </p>
                 <div class="row">
@@ -29,7 +29,7 @@
             <div class="card-body">
               <h5 class="card-title"><%= link_to booklisting.title, booklisting_path(booklisting) %></h5>
               <p class="card-text">By: <%= booklisting.author %></p>
-              <p class="card-text"><%= booklisting.description %></p>
+              <p class="card-text"><%= truncate(booklisting.description, length:100){link_to 'Read More', booklisting} %></p>
               <p class="card-text"><small class="text-muted">Created <%=time_ago_in_words(booklisting.created_at)%></small></p>
             </div>
             <div class="card-footer text-center">
