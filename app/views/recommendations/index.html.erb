@@ -14,12 +14,17 @@
 
             </li>
             <li class="list-group-item text-left">
-              <div class="star-rating" data-score= <%=(recommendation.recratings.map{|r| r.score}.inject{|sum, number| sum + number}/(recommendation.recratings.size).to_f).round(2)%>></div>
+              <%if recommendation.recratings.any?%>
+                <div class="star-rating" data-score= <%=(recommendation.recratings.map{|r| r.score}.inject{|sum, number| sum + number}/(recommendation.recratings.size).to_f).round(2)%>></div>
+              <% else %>
+                <div class="star-rating" data-score= 0></div>
+              <% end %>
             </li>
           </ul>
           <div class="card-body">
             <h5 class="card-title"><%= link_to recommendation.title, recommendation_path(recommendation) %></h5>
-            <p class="card-text">By: <%= recommendation.author %></p>
+            <p class="card-text">Book By: <%= recommendation.author %></p>
+            <p class="card-text">Recommendation By: <%= recommendation.source %></p>
             <p class="card-text"><%= truncate(recommendation.context, length:100){link_to 'Read More', recommendation} %></p>
             <p class="card-text"><small class="text-muted">Created <%=time_ago_in_words(recommendation.created_at) %> Ago</small></p>
           </div>

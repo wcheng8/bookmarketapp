@@ -13,7 +13,11 @@
               </div>
               </li>
               <li class="list-group-item text-left">
-                <%#<div class="star-rating" data-score= <%=(book.bookratings.map{|r| r.score}.inject{|sum, number| sum + number}/(book.bookratings.size).to_f).round(2)></div> %>%>
+                <%if book.bookratings.any?%>
+                <div class="star-rating" data-score= <%=(book.bookratings.map{|r| r.score}.inject{|sum, number| sum + number}/(book.bookratings.size).to_f).round(2)%>></div>
+                  <% else %>
+                <div class="star-rating" data-score= 0></div>
+              <% end %>
               </li>
           </ul>
           <div class="card-body">
@@ -38,3 +42,12 @@
   <%=paginate @books%>
 </div>
 
+<script>
+  $('.star-rating').raty({
+    path: '/assets/',
+    readOnly:  true,
+    score: function(){
+      return $(this).attr('data-score')
+    },
+    })
+</script>

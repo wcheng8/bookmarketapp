@@ -3,5 +3,5 @@ class Recommendation < ApplicationRecord
   belongs_to :user
   has_and_belongs_to_many :genres
   has_many :recratings, dependent: :destroy
-  paginates_per 2
+  paginates_per 5
 end
