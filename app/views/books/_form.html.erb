@@ -18,5 +18,5 @@
   <%= f.input :author %>
   <%= f.association :genres, as: :check_boxes,collection:Genre.all.map{|g| [g.genre, g.id]}%>
   <%= f.input :context%>
-  <%= f.button :submit %>
+  <%= f.button :submit , class:"btn btn-success"%>
 <% end %>

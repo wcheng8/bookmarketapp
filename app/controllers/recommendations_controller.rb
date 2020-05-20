@@ -6,7 +6,7 @@ class RecommendationsController < ApplicationController
       @recommendations = Recommendation.all.order("created_at DESC").page(params[:page])
     else
       @genre_id = Genre.find_by(genre: params[:genre]).id
-      @recommendations = Genre.find(@genre_id).recommendations.all
+      @recommendations = Genre.find(@genre_id).recommendations.all.page(params[:page])
     end
   end
 

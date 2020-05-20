@@ -506,8 +506,77 @@ recommendations = [
               
               With courage, grace and powerful insight, bestselling author Kristin Hannah captures the epic panorama of WWII and illuminates an intimate part of history seldom seen: the women’s war. The Nightingale tells the stories of two sisters, separated by years and experience, by ideals, passion and circumstance, each embarking on her own dangerous path toward survival, love, and freedom in German-occupied, war-torn France–a heartbreakingly beautiful novel that celebrates the resilience of the human spirit and the durability of women. It is a novel for everyone, a novel for a lifetime. ']
             
-            
+              
             ]
+            
+            for i in 0..11 do
+              Book.create(
+                title: Faker::Book.title,
+                author: Faker::Book.author,
+                context: Faker::Lorem.paragraph,
+                user_id: 1,
+                created_at: Faker::Time.backward(days: 365, period: :evening)
+              )
+              puts "Book#{i} created"
+            end
+
+            for i in 1..11 do
+              Book.find(i).picture.attach(io:File.open('app/assets/images/images1.jpeg'),filename:'images1.jpeg',content_type:"jpeg")
+            end
+
+            for i in 0..50 do
+              Bookrating.create(
+                title: Faker::Lorem.word,
+                context: Faker::Lorem.paragraph,
+                score: rand(6),
+                book_id: rand(11),
+                user_id: 1
+              )
+            end
+            
+            for i in 0..20 do
+              book = Book.find(rand(10)+1)
+              genre = Genre.find(rand(4)+1)
+              if book.genre_ids.include?(genre.id) 
+              else
+                book.genres << genre
+              end
+            end
+            puts "create bookgenre relation"
+            for i in 0..11 do
+              Booklisting.create(
+                title: Faker::Book.title,
+                author: Faker::Book.author,
+                description: Faker::Lorem.paragraph,
+                price: rand(100),
+                user_id: 1,
+                condition_id: rand(4),
+                created_at: Faker::Time.backward(days: 365, period: :evening)
+              )
+              
+              puts "Booklist#{i} created"
+            end
+            for i in 1..10 do
+              Booklisting.find(i).picture.attach(io:File.open('app/assets/images/images1.jpeg'),filename:'images1.jpeg',content_type:"jpeg")
+            end
+            for i in 0..50 do
+  Booklistcomment.create(
+    title: Faker::Lorem.word,
+    content:Faker::Lorem.paragraph,
+    booklisting_id: rand(11)
+  )
+end
+
+for i in 0..20 do
+  booklist = Booklisting.find(rand(9)+1)
+  genre = Genre.find(rand(4)+1)
+  if booklist.genre_ids.include?(genre.id) 
+  else
+    booklist.genres << genre
+  end
+end
+puts "create booklistgenre relation"
+
 recommendations.each do |rec|
   Recommendation.create(
     title: rec[0],
@@ -520,3 +589,26 @@ recommendations.each do |rec|
   puts "Rec for #{rec[0]}"
 end
 
+for i in 1..27 do
+  Recommendation.find(i).picture.attach(io:File.open('app/assets/images/images1.jpeg'),filename:'images1.jpeg',content_type:"jpeg")
+end
+
+for i in 0..100 do
+  Recrating.create(
+    title: Faker::Lorem.word,
+    context: Faker::Lorem.paragraph,
+    score: rand(6),
+    recommendation_id: rand(28),
+    user_id: 1
+  )
+end
+
+for i in 0..40 do
+  rec = Recommendation.find(rand(27)+1)
+  genre = Genre.find(rand(4)+1)
+  if rec.genre_ids.include?(genre.id) 
+  else
+    rec.genres << genre
+  end
+end
+puts "create recgenre relation"

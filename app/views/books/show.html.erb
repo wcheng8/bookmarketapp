@@ -54,9 +54,10 @@
   <h3>Add a Rating</h3>
   <%= render 'bookratings/form' %>
 </div>
-
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
+<div class="col-md-6 pt-5">
+  <%= link_to 'Edit', edit_book_path(@book) , class:"btn btn-dark"%> |
+  <%= link_to 'Back', books_path , class:"btn btn-dark"%>
+</div>
 
 <script>
   $('.star-rating').raty({
