@@ -1,5 +1,5 @@
 class BookratingsController < ApplicationController
-
+  
   def new
     @bookrating = Bookrating.new
   end

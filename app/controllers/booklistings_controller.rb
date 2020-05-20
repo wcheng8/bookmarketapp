@@ -1,5 +1,6 @@
 class BooklistingsController < ApplicationController
   before_action :set_booklisting, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index]
 
   def index
     if params[:genre].blank? && params[:search].blank?
