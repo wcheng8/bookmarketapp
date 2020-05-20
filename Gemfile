@@ -81,3 +81,5 @@ gem "tether-rails", "~> 1.4"
 gem "kaminari", "~> 1.2"
 
 gem "faker", "~> 2.11"
+
+gem "aws-sdk-s3", "~> 1.65"
