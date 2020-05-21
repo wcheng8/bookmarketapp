@@ -3,4 +3,6 @@ class RoomsController < ApplicationController
     @messages = Message.all
     @message = Message.new
   end
+  def bored
+  end
 end

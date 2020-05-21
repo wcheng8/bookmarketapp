@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'recratings/delete'
   get 'bookratings/create'
   get 'rooms/home'
+  get 'rooms/bored'
   post 'messages', to: "messages#create"
   devise_for :users 
   post "/payments/webhook", to: "payments#webhook"
