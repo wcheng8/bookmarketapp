@@ -1,4 +1,5 @@
 class RecratingsController < ApplicationController
+  # Creates recommendations
   def def new
     @recrating = Recrating.new
   end

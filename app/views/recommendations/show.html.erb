@@ -42,6 +42,7 @@
       <%if rating.user_id?%>
         User: <%=rating.user.username%><br>
       <% end %>
+      <%# Display rating %>
       Score: <div class="star-rating" data-score=<%=rating.score%>></div>
       Title: <%=rating.title%><br>
       Content: <%=rating.context%><br>

@@ -2,6 +2,7 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index,:show]
 
+  # Creates new books
   def index
     if params[:genre].blank?
       @books = Book.all.order("created_at DESC").page(params[:page])
@@ -13,6 +14,8 @@ class BooksController < ApplicationController
 
   def show
     @bookratings = Bookrating.where(book_id: @book.id).order("created_at DESC")
+
+    # Calculate avg rating for show
 
     if @bookratings.blank?
       @avg_rating = 0

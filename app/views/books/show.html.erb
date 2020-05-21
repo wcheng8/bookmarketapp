@@ -34,13 +34,14 @@
 
 <div class="col-md-6 offset-md-1">
   <%if @bookratings.blank?%>
-    <h2 class="pt-5">There are no revies yet, would you like to write one?</h2>
+    <h2 class="pt-5">There are no reviews yet, would you like to write one?</h2>
     <% else %>
     <h2 class="pt-5" ><%= @book.bookratings.count %> Ratings</h2>
     <% @bookratings.each do |rating| %>
       <%if rating.user_id?%>
         User: <%=rating.user.username%><br>
       <% end %>
+      <%# Display ratings %>
       Score: <div class="star-rating" data-score=<%=rating.score%>></div>
       Title: <%=rating.title%><br>
       Content: <%=rating.context%><br>

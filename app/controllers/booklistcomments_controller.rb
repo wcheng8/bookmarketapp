@@ -1,4 +1,6 @@
 class BooklistcommentsController < ApplicationController
+  # Creates booklisting comments
+  
   def create
     @booklisting = Booklisting.find(params[:booklisting_id])
     @comment = @booklisting.booklistcomments.create(params[:booklistcomment].permit(:title,:content))

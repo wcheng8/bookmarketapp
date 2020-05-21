@@ -2,6 +2,7 @@ class BooklistingsController < ApplicationController
   before_action :set_booklisting, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index]
 
+  # Lists and sorts the booklistings
   def index
     if params[:genre].blank? && params[:search].blank?
       @booklistings = Booklisting.all.order("created_at DESC").page(params[:page])

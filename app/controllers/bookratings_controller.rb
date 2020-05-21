@@ -1,5 +1,6 @@
 class BookratingsController < ApplicationController
-  
+  # Add booklisting ratings
+
   def new
     @bookrating = Bookrating.new
   end
@@ -9,6 +10,7 @@ class BookratingsController < ApplicationController
     @rating = @book.bookratings.create(params[:bookrating].permit(:score,:title,:context,:user_id))
     @rating.user_id = current_user.id
 
+    # Calculate avg rating for show
     if @rating.save
       redirect_to book_path(@book)
     else

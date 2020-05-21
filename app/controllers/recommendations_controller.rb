@@ -1,6 +1,8 @@
 class RecommendationsController < ApplicationController
+  # Add recommendations
   before_action :set_recommendation, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index,:show]
+
 
   def index
     if params[:genre].blank?

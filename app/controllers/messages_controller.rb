@@ -1,4 +1,6 @@
 class MessagesController < ApplicationController
+  # Creates user messages in chat
+
   before_action :authenticate_user!
   def create
     @message = Message.new(message_params)
